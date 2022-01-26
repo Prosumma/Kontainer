@@ -1,5 +1,9 @@
 package com.prosumma.kontainer
 
+/**
+ * A `ParentDomain` is a [Domain] which may have zero or more child domains
+ * ([ChildDomain]).
+ */
 abstract class ParentDomain(name: Name): Domain(name) {
     private val children: MutableMap<Name, ChildDomain<*>> = mutableMapOf()
 
@@ -13,4 +17,8 @@ abstract class ParentDomain(name: Name): Domain(name) {
                 throw IllegalArgumentException("Parents do not match.")
             child
         } as C
+
+    @Suppress("UNCHECKED_CAST")
+    operator fun <P: ParentDomain, C: ChildDomain<P>> get(name: Name): C? =
+        children.get(name)?.let { it as C }
 }

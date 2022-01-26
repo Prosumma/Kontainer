@@ -1,5 +1,9 @@
 package com.prosumma.kontainer
 
+/**
+ * A `Container` which caches unserialized values
+ * for faster access.
+ */
 class CachingContainer(private val store: Store): Container {
     private class Holder<T>(val value: T)
 
@@ -23,6 +27,16 @@ class CachingContainer(private val store: Store): Container {
             cache[key] = Holder(value)
         }
 
+    /**
+     * Remove an element from the cache, or all elements
+     * if no [Key] is passed.
+     *
+     * Note that this does not remove the element from the
+     * underlying store.
+     *
+     * Use of this method should be avoided except in low-memory
+     * conditions.
+     */
     fun purge(key: Key? = null) {
         key?.run {
             synchronized(key) {

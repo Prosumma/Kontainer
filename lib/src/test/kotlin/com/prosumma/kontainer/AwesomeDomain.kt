@@ -1,7 +1,10 @@
 package com.prosumma.kontainer
 
-class AwesomeDomain(parent: RootDomain): ChildDomain<RootDomain>("awesome", parent) {
+class AwesomeDomain(parent: Kontainer): ChildDomain<Kontainer>("awesome", parent) {
     var watusi: Int? by contained()
 }
 
-val RootDomain.awesome: AwesomeDomain by child(::AwesomeDomain)
+class CrazyDomain<P: ParentDomain>(name: Name, parent: P): ChildDomain<P>(name, parent)
+
+val Kontainer.awesome: AwesomeDomain by child(::AwesomeDomain)
+val Kontainer.crazy: CrazyDomain<Kontainer> by child(::CrazyDomain)
