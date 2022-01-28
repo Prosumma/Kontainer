@@ -20,5 +20,5 @@ abstract class ParentDomain(name: Name): Domain(name) {
 
     @Suppress("UNCHECKED_CAST")
     operator fun <P: ParentDomain, C: ChildDomain<P>> get(name: Name): C? =
-        children.get(name)?.let { it as C }
+        children[name]?.let { it as C }
 }
