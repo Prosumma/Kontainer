@@ -8,7 +8,7 @@ class Name(private val value: String) {
 
     init {
         if (!validate(value))
-            throw IllegalArgumentException("A Name must not contain / or consist of whitespace, except that it may be a zero-length string.")
+            throw IllegalArgumentException("A Name must not contain '/' or consist of whitespace, except that it may be a zero-length string.")
     }
 
     override fun equals(other: Any?): Boolean =

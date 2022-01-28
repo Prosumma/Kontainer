@@ -16,6 +16,20 @@ class DomainTests {
     }
 
     @Test
+    fun testClassSerialization() {
+        val store = MemoryStore()
+        val kontainer = Kontainer(store)
+        assertNull(kontainer.awesome.crazy.person)
+        val person = Person("Napoleon", "Bonaparte", 45)
+        kontainer.awesome.crazy.person = person
+        assertEquals(kontainer.awesome.crazy.person, person)
+        assertEquals(
+            store[kontainer.awesome.crazy.key + "person"],
+            """{"firstName":"Napoleon","lastName":"Bonaparte","age":45}"""
+        )
+    }
+
+    @Test
     fun testCachingContainer() {
         val store = MemoryStore()
         val container = CachingContainer(store)
