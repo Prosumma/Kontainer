@@ -37,7 +37,7 @@ class CachingContainer(private val store: Store): Container {
      * Use of this method should be avoided except in low-memory
      * conditions.
      */
-    fun purge(key: Key? = null) {
+    fun purge(key: Key? = null) =
         key?.run {
             synchronized(key) {
                 cache.remove(key)
@@ -45,5 +45,4 @@ class CachingContainer(private val store: Store): Container {
         } ?: run {
             cache.clear()
         }
-    }
 }

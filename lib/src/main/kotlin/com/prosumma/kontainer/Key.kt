@@ -29,8 +29,8 @@ class Key internal constructor(private val value: String) {
         value.split(SEPARATOR).map(::Name)
     }
 
-    operator fun plus(name: Name): Key = create(value + SEPARATOR + name.toString())
-    operator fun plus(name: String): Key = this + Name(name)
+    operator fun plus(name: String): Key = create(value + SEPARATOR + name)
+    operator fun plus(name: Name): Key = plus(name.toString())
 
     override fun equals(other: Any?): Boolean =
         other != null && other is Key && other.value == value
