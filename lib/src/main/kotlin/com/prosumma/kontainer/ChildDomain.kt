@@ -11,8 +11,8 @@ package com.prosumma.kontainer
  *
  * ```kotlin
  * // This one is a child of the root.
- * class MyDomain(parent: RootDomain): ChildDomain<RootDomain>("my", parent)
- * val RootDomain.my: MyDomain by child(::MyDomain)
+ * class MyDomain(parent: Kontainer): ChildDomain<Kontainer>("my", parent)
+ * val Kontainer.my: MyDomain by child(::MyDomain)
  *
  * // This one is a child of MyDomain and thus a grandchild of the root.
  * class YourDomain(parent: MyDomain): ChildDomain<MyDomain>("your", parent) {
@@ -30,9 +30,9 @@ package com.prosumma.kontainer
  * properties using ordinary dot syntax:
  *
  * ```kotlin
- * val root = RootDomain(SharedPreferencesStore())
+ * val kontainer = Kontainer(SharedPreferencesStore())
  * // Stores the value 100 to the key `/my/your/cost` in the underlying store.
- * root.my.your.cost = 100
+ * kontainer.my.your.cost = 100
  * ```
  */
 abstract class ChildDomain<Parent: ParentDomain>(

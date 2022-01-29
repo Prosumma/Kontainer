@@ -1,5 +1,20 @@
 package com.prosumma.kontainer
 
+/**
+ * A `Key` represents an entry in the underlying `Container`.
+ *
+ * In general, it is not necessary to use keys directly. In fact,
+ * the entire point of Kontainer is to avoid the use of strings
+ * and keys, and instead use hierarchical dot syntax to access
+ * values:
+ *
+ * ```kotlin
+ * val width = kontainer.config.width
+ * ```
+ *
+ * This value is represented as `/config/width` in the underlying
+ * container.
+ */
 class Key internal constructor(private val value: String) {
     companion object {
         const val SEPARATOR = "/"
