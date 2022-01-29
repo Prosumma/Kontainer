@@ -13,6 +13,8 @@ plugins {
     kotlin("plugin.serialization") version "1.6.10"
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
+    // Publishing
+    id("maven-publish")
 }
 
 repositories {
@@ -40,4 +42,15 @@ dependencies {
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api("org.apache.commons:commons-math3:3.6.1")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("Kontainer") {
+            groupId = "com.github.prosumma"
+            artifactId = "kontainer"
+            version = "1.0.0"
+            from(components["java"])
+        }
+    }
 }

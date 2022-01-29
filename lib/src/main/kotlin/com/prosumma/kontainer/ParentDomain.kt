@@ -3,6 +3,8 @@ package com.prosumma.kontainer
 /**
  * A `ParentDomain` is a [Domain] which may have zero or more child domains
  * ([ChildDomain]).
+ *
+ * You want to inherit from [ChildDomain], not this one.
  */
 abstract class ParentDomain(name: Name): Domain(name) {
     private val kochildren: MutableMap<Name, ChildDomain<*>> = mutableMapOf()
