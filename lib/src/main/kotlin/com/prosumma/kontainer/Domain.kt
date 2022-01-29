@@ -6,9 +6,13 @@ package com.prosumma.kontainer
  * Don't inherit from this type. Instead, inherit from
  * [ChildDomain], because this type is orphaned: it can
  * neither have a parent nor children.
+ *
+ * The properties of `Domain` begin with the prefix
+ * `ko` so that users can add words such as `name`,
+ * `container`, `key`, etc. for their own use.
  */
-abstract class Domain internal constructor(val name: Name) {
-    abstract val container: Container
-    open val key: Key
-        get() = Key.create(name)
+abstract class Domain internal constructor(val koname: Name) {
+    abstract val kocontainer: Container
+    open val kokey: Key
+        get() = Key.create(koname)
 }

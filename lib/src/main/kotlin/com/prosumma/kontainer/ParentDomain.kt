@@ -5,20 +5,20 @@ package com.prosumma.kontainer
  * ([ChildDomain]).
  */
 abstract class ParentDomain(name: Name): Domain(name) {
-    private val children: MutableMap<Name, ChildDomain<*>> = mutableMapOf()
+    private val kochildren: MutableMap<Name, ChildDomain<*>> = mutableMapOf()
 
     @Suppress("UNCHECKED_CAST")
     operator fun <P: ParentDomain, C: ChildDomain<P>> get(name: Name, create: (Name, P) -> C): C =
-        children.getOrPut(name) {
+        kochildren.getOrPut(name) {
             val child = create(name, this as P)
-            if (child.name != name)
+            if (child.koname != name)
                 throw IllegalArgumentException("Names do not match.")
-            if (child.parent != this)
+            if (child.koparent != this)
                 throw IllegalArgumentException("Parents do not match.")
             child
         } as C
 
     @Suppress("UNCHECKED_CAST")
     operator fun <P: ParentDomain, C: ChildDomain<P>> get(name: Name): C? =
-        children[name]?.let { it as C }
+        kochildren[name]?.let { it as C }
 }

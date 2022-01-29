@@ -6,15 +6,15 @@ typealias Getter<T> = (Key, Container) -> T
 typealias Setter<T> = (Key, Container, T) -> Unit
 
 class ContainedPropertyDelegate<D: Domain, T> @PublishedApi internal constructor (
-    val name: Name?,
-    val getter: Getter<T>,
-    val setter: Setter<T>
+    private val name: Name?,
+    private val getter: Getter<T>,
+    private val setter: Setter<T>
 ) {
     operator fun getValue(domain: D, property: KProperty<*>): T =
-        getter(domain.key + (name ?: Name(property.name)), domain.container)
+        getter(domain.kokey + (name ?: Name(property.name)), domain.kocontainer)
 
     operator fun setValue(domain: D, property: KProperty<*>, value: T) =
-        setter(domain.key + (name ?: Name(property.name)), domain.container, value)
+        setter(domain.kokey + (name ?: Name(property.name)), domain.kocontainer, value)
 }
 
 inline fun <D: Domain, reified T> contained(

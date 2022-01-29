@@ -12,7 +12,7 @@ class DomainTests {
         assertNull(kontainer.awesome.watusi)
         kontainer.awesome.watusi = 3
         assertEquals(kontainer.awesome.watusi, 3)
-        assertEquals(store[kontainer.awesome.key + "watusi"], "3")
+        assertEquals(store[kontainer.awesome.kokey + "watusi"], "3")
     }
 
     @Test
@@ -24,7 +24,7 @@ class DomainTests {
         kontainer.awesome.crazy.person = person
         assertEquals(kontainer.awesome.crazy.person, person)
         assertEquals(
-            store[kontainer.awesome.crazy.key + "person"],
+            store[kontainer.awesome.crazy.kokey + "person"],
             """{"firstName":"Napoleon","lastName":"Bonaparte","age":45}"""
         )
     }
@@ -37,7 +37,7 @@ class DomainTests {
         assertNull(kontainer.awesome.watusi)
         kontainer.awesome.watusi = 3
         assertEquals(kontainer.awesome.watusi, 3)
-        assertEquals(store[kontainer.awesome.key + "watusi"], "3")
-        assertEquals(container[kontainer.awesome.key + "watusi"], 3)
+        assertEquals(store[kontainer.awesome.kokey + "watusi"], "3")
+        assertEquals(container[kontainer.awesome.kokey + "watusi"], 3)
     }
 }
