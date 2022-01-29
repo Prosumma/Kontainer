@@ -9,10 +9,10 @@ package com.prosumma.kontainer
  * values:
  *
  * ```kotlin
- * val width = kontainer.config.width
+ * val width = kontainer.config.metrics.width
  * ```
  *
- * This value is represented as `/config/width` in the underlying
+ * This value is represented as `/config/metrics/width` in the underlying
  * container.
  */
 class Key internal constructor(private val value: String) {
